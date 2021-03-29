@@ -23,9 +23,9 @@ var inlineAssets = BlockArgument("i", "inlineAssets", required: false, helpMessa
     renderingMode = .inline
 }
 var downsizeImagesEnabled = true
-// var downsizeImages = BlockArgument("z", "downsize-images", required: false, helpMessage: "Downsize image screenshots") {
-//     downsizeImagesEnabled = true
-// }
+var downsizeImages = BlockArgument("z", "downsize-images", required: false, helpMessage: "Downsize image screenshots") {
+    downsizeImagesEnabled = true
+}
 var deleteUnattachedFilesEnabled = false
 var deleteUnattachedFiles = BlockArgument("d", "delete-unattached", required: false, helpMessage: "Delete unattached files from bundle, reducing bundle size") {
     deleteUnattachedFilesEnabled = true
@@ -35,7 +35,7 @@ var deleteUnattachedFiles = BlockArgument("d", "delete-unattached", required: fa
 command.arguments = [help,
                      verbose,
                      junit,
-                    //  downsizeImages,
+                     downsizeImages,
                      deleteUnattachedFiles,
                      result,
                      inlineAssets]
@@ -78,7 +78,7 @@ if junitEnabled {
     }
 }
 
-if downsizeImagesEnabled && renderingMode == .inline {
+if downsizeImagesEnabled && renderingMode == .linking {
     summary.reduceImageSizes()
 }
 
