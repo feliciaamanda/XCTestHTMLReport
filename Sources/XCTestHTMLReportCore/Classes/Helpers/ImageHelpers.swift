@@ -6,8 +6,8 @@
 import Foundation
 import Cocoa
 
-let imageWidth: CGFloat = 200
-let imageCompression: Float = 0.8
+let imageWidth: CGFloat = 100
+let imageCompression: Float = 0.9
 
 /// Performs an image resize for the image at the provided path
 /// image is resized to be 200px width - aspect ratio maintaned
