@@ -78,7 +78,7 @@ if junitEnabled {
     }
 }
 
-if downsizeImagesEnabled && renderingMode == .linking {
+if downsizeImagesEnabled {
     summary.reduceImageSizes()
 }
 
