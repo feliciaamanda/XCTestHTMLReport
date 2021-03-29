@@ -78,7 +78,7 @@ if junitEnabled {
     }
 }
 
-if downsizeImagesEnabled {
+if downsizeImagesEnabled && renderingMode == .inline {
     summary.reduceImageSizes()
 }
 
