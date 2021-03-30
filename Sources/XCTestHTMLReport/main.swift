@@ -47,8 +47,6 @@ if !command.isValid {
 
 let summary = Summary(resultPaths: result.values, renderingMode: renderingMode)
 
-summary.reduceImageSizes()
-
 Logger.step("Building HTML..")
 let html = summary.generatedHtmlReport()
 

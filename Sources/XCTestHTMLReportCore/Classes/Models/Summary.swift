@@ -32,6 +32,7 @@ public struct Summary
                 Run(action: $0, file: resultFile, renderingMode: renderingMode)
             }
             runs.append(contentsOf: resultRuns)
+            reduceImageSizes()
         }
         self.runs = runs
     }
