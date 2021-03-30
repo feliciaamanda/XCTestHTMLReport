@@ -21,7 +21,7 @@ var result = ValueArgument(.path, "r", "resultBundlePath", required: true, allow
 var renderingMode = Summary.RenderingMode.linking
 var inlineAssets = BlockArgument("i", "inlineAssets", required: false, helpMessage: "Inline all assets in the resulting html-file, making it heavier, but more portable") {
     renderingMode = .inline
-    downsizeImagesEnabled = true
+    summary.reduceImageSizes()
 }
 // var downsizeImagesEnabled = true
 // var downsizeImages = BlockArgument("z", "downsize-images", required: false, helpMessage: "Downsize image screenshots") {
@@ -79,9 +79,9 @@ if junitEnabled {
     }
 }
 
-if downsizeImagesEnabled && renderingMode == .linking {
-    summary.reduceImageSizes()
-}
+// if downsizeImagesEnabled && renderingMode == .linking {
+//     summary.reduceImageSizes()
+// }
 
 if deleteUnattachedFilesEnabled && renderingMode == .linking {
     summary.deleteUnattachedFiles()
