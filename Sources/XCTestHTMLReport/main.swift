@@ -63,6 +63,8 @@ catch let e {
     Logger.error("An error has occured while creating the report. Error: \(e)")
 }
 
+summary.reduceImageSizes()
+
 if junitEnabled {
     Logger.step("Building JUnit..")
     let junitXml = summary.generatedJunitReport()
@@ -78,9 +80,9 @@ if junitEnabled {
     }
 }
 
-if renderingMode == .linking {
-    summary.reduceImageSizes()
-}
+// if renderingMode == .linking {
+//     summary.reduceImageSizes()
+// }
 
 if deleteUnattachedFilesEnabled && renderingMode == .linking {
     summary.deleteUnattachedFiles()
