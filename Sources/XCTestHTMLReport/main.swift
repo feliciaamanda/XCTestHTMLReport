@@ -47,6 +47,8 @@ if !command.isValid {
 
 let summary = Summary(resultPaths: result.values, renderingMode: renderingMode)
 
+summary.reduceImageSizes()
+
 Logger.step("Building HTML..")
 let html = summary.generatedHtmlReport()
 
@@ -78,9 +80,9 @@ if junitEnabled {
     }
 }
 
-if renderingMode == .inline {
-    summary.reduceImageSizes()
-}
+// if renderingMode == .inline {
+//     summary.reduceImageSizes()
+// }
 
 if deleteUnattachedFilesEnabled && renderingMode == .linking {
     summary.deleteUnattachedFiles()
