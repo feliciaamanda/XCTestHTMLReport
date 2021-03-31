@@ -34,7 +34,6 @@ public struct Summary
             runs.append(contentsOf: resultRuns)
         }
         self.runs = runs
-        reduceImageSizes()
     }
 
     /// Reduce size of all images in attachments

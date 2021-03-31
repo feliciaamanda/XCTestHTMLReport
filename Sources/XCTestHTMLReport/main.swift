@@ -19,13 +19,14 @@ var junit = BlockArgument("j", "junit", required: false, helpMessage: "Provide J
 }
 var result = ValueArgument(.path, "r", "resultBundlePath", required: true, allowsMultiple: true, helpMessage: "Path to a result bundle (allows multiple)")
 var renderingMode = Summary.RenderingMode.linking
+
 var inlineAssets = BlockArgument("i", "inlineAssets", required: false, helpMessage: "Inline all assets in the resulting html-file, making it heavier, but more portable") {
     renderingMode = .inline
 }
-// var downsizeImagesEnabled = true
-// var downsizeImages = BlockArgument("z", "downsize-images", required: false, helpMessage: "Downsize image screenshots") {
-//     downsizeImagesEnabled = true
-// }
+var downsizeImagesEnabled = false
+var downsizeImages = BlockArgument("z", "downsize-images", required: false, helpMessage: "Downsize image screenshots") {
+    downsizeImagesEnabled = true
+}
 var deleteUnattachedFilesEnabled = false
 var deleteUnattachedFiles = BlockArgument("d", "delete-unattached", required: false, helpMessage: "Delete unattached files from bundle, reducing bundle size") {
     deleteUnattachedFilesEnabled = true
@@ -35,7 +36,7 @@ var deleteUnattachedFiles = BlockArgument("d", "delete-unattached", required: fa
 command.arguments = [help,
                      verbose,
                      junit,
-                    //  downsizeImages,
+                     downsizeImages,
                      deleteUnattachedFiles,
                      result,
                      inlineAssets]
@@ -78,9 +79,9 @@ if junitEnabled {
     }
 }
 
-// if renderingMode == .inline {
-//     summary.reduceImageSizes()
-// }
+if downsizeImagesEnabled {
+    summary.reduceImageSizes()
+}
 
 if deleteUnattachedFilesEnabled && renderingMode == .linking {
     summary.deleteUnattachedFiles()
